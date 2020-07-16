@@ -43,8 +43,8 @@ export function signIn() {
       data: { login, password }
     })
       .then(({ data }) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token)
+        if (data.result) {
+          localStorage.setItem('token', data.result.token)
           dispatch({ type: LOGIN })
           history.push('/private')
         }

@@ -39,10 +39,19 @@ server.post('/api/v3/auth/login', async (req, res) => {
     data: { login, password }
   })
     .then(({ data }) => {
-      if (data.result) {
-        res.json(data.result.token)
-      }
-      res.json({ status: 'error', err: data.error })
+      res.json(data)
+    })
+    .catch((err) => res.json({ status: 'error', err }))
+})
+
+server.get('/api/v3/orders/trips', async (req, res) => {
+  await axios({
+    method: 'get',
+    url: 'http://transstage1.iwayex.com/transnextgen/v3/orders/trips',
+    headers: { Authorization: req.headers.authorization }
+  })
+    .then(({ data }) => {
+      res.json(data)
     })
     .catch((err) => res.json({ status: 'error', err }))
 })
