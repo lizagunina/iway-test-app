@@ -39,18 +39,14 @@ export function signIn() {
     const { login, password } = getState().auth
     axios({
       method: 'post',
-      url: '/v3/auth/login',
-      baseURL: 'http://transstage1.iwayex.com/transnextgen',
+      url: '/api/v3/auth/login',
       data: { login, password }
     })
       .then(({ data }) => {
-        if (data.result) {
-          localStorage.setItem('token', data.result.token)
+        if (data.token) {
+          localStorage.setItem('token', data.token)
           dispatch({ type: LOGIN })
           history.push('/private')
-        }
-        if (data.error) {
-          console.log(data.error.message)
         }
       })
       .catch((err) => {

@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import axios from 'axios'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 
@@ -30,6 +31,22 @@ const middleware = [
 
 middleware.forEach((it) => server.use(it))
 
+server.post('/api/v3/auth/login', async (req, res) => {
+  const { login, password } = req.body
+  await axios({
+    method: 'post',
+    url: 'http://transstage1.iwayex.com/transnextgen/v3/auth/login',
+    data: { login, password }
+  })
+    .then(({ data }) => {
+      if (data.result) {
+        res.json(data.result.token)
+      }
+      res.json({ status: 'error', err: data.error })
+    })
+    .catch((err) => res.json({ status: 'error', err }))
+})
+
 server.use('/api/', (req, res) => {
   res.status(404)
   res.end()
@@ -37,7 +54,7 @@ server.use('/api/', (req, res) => {
 
 const [htmlStart, htmlEnd] = Html({
   body: 'separator',
-  title: 'Skillcrucial - Become an IT HERO'
+  title: ''
 }).split('separator')
 
 server.get('/', (req, res) => {
