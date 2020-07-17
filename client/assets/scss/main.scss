@@ -4,3 +4,9 @@
 /* purgecss end ignore */
 
 @tailwind utilities;
+
+@import './login-page.scss';
+@import './button';
+@import './pagination.scss';
+@import './orders-list.scss';
+@import './search-form.scss';

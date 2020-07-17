@@ -1,0 +1,72 @@
+.orders {
+  width: 80%;
+  margin: 0 auto;
+  color: #2d3748;
+  &__header {
+    color: #2b6cb0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem ;
+  }
+  &-block {
+    border: 1px #2d3748 solid;
+    padding: 2rem;
+    &_active {
+      border-left: 2px #4299e1 solid;
+    }
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      color: #2b6cb0;
+      font-size: .875rem;
+    }
+    &__show-info {
+      outline: none;
+      color:#2b6cb0;
+      font-weight: 700;
+      text-decoration: underline;
+      &:focus {
+        outline: none
+      }
+    }
+  }
+}
+
+.passenger {
+  margin-bottom: 1.5rem;
+  &-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__item {
+      width: 30%;
+      padding: 0.1rem;
+    }
+  }
+}
+
+.route {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &__item {
+    width: 30%;
+    padding: 0.1rem;
+  }
+}
+
+.title {
+    font-size: 1rem;
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+@media (max-width: 1280px) {
+  .orders {
+    width: 100%;
+  }
+}
+
+

@@ -2,8 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateLoginField, updatePasswordField, signIn } from '../redux/reducers/auth'
 
-import './login-page.scss'
-
 const LoginForm = () => {
   const dispatch = useDispatch()
   const { login, password } = useSelector((s) => s.auth)
