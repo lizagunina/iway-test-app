@@ -44,7 +44,10 @@ const config = {
     proxy: [
       {
         context: ['/api', '/auth', '/ws'],
-        target: `http://localhost:${process.env.PORT || 8090}`,
+        target: 'http://transstage1.iwayex.com/transnextgen', // `http://localhost:${process.env.PORT || 8090}`,
+        pathRewrite: {
+          '^/api': ''
+        },
         secure: false,
         changeOrigin: true,
         ws: process.env.ENABLE_SOCKETS || false

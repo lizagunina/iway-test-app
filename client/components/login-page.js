@@ -2,7 +2,7 @@ import React from 'react'
 import Head from './head'
 import LoginForm from './login'
 
-const Home = () => {
+const LoginPage = () => {
   return (
     <div>
       <Head title="Log In" />
@@ -11,6 +11,6 @@ const Home = () => {
   )
 }
 
-Home.propTypes = {}
+LoginPage.propTypes = {}
 
-export default Home
+export default LoginPage

@@ -4,23 +4,22 @@ const GET_TRIPS = 'GET_TRIPS'
 
 const initialState = {
   list: [],
-  params: {}
+  pageCount: 1
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_TRIPS: {
-      return { ...state, list: action.trips }
+      return { ...state, list: action.trips, pageCount: action.pageCount }
     }
     default:
       return state
   }
 }
 
-export function getTrips() {
-  return (dispatch, getState) => {
+export function getTrips(params = {}) {
+  return (dispatch) => {
     const { token } = localStorage
-    const { params } = getState().trips
     if (token) {
       axios({
         method: 'get',
@@ -30,8 +29,11 @@ export function getTrips() {
       })
         .then(({ data }) => {
           if (data.result) {
-            dispatch({ type: GET_TRIPS, trips: data.result.orders })
-            console.log(data.result.orders)
+            dispatch({
+              type: GET_TRIPS,
+              trips: data.result.orders,
+              pageCount: data.result.page_data.page_count
+            })
           }
           if (data.error) {
             localStorage.removeItem('token')

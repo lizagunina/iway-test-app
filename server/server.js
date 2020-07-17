@@ -2,7 +2,6 @@ import express from 'express'
 import path from 'path'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import axios from 'axios'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 
@@ -30,31 +29,6 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
-
-server.post('/api/v3/auth/login', async (req, res) => {
-  const { login, password } = req.body
-  await axios({
-    method: 'post',
-    url: 'http://transstage1.iwayex.com/transnextgen/v3/auth/login',
-    data: { login, password }
-  })
-    .then(({ data }) => {
-      res.json(data)
-    })
-    .catch((err) => res.json({ status: 'error', err }))
-})
-
-server.get('/api/v3/orders/trips', async (req, res) => {
-  await axios({
-    method: 'get',
-    url: 'http://transstage1.iwayex.com/transnextgen/v3/orders/trips',
-    headers: { Authorization: req.headers.authorization }
-  })
-    .then(({ data }) => {
-      res.json(data)
-    })
-    .catch((err) => res.json({ status: 'error', err }))
-})
 
 server.use('/api/', (req, res) => {
   res.status(404)
