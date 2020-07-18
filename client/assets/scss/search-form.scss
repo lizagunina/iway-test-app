@@ -4,11 +4,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   margin: 0.5rem;
   margin-bottom: 2rem;
   select, input {
     display: block;
     margin-right: 1.15rem;
+    margin-bottom: 0.5rem;
     padding: 0.5rem 1rem;
     border: 1px #cbd5e0 solid;
     font-size: .875rem;
@@ -18,5 +20,20 @@
   }
   label {
     margin-right: 0.75rem;
+  }
+}
+
+.search-fields {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 6400px) {
+  .search-block {
+    input, select {
+      padding: 0.3rem 0.75rem;
+      margin-right: 0.5rem;
+    }
   }
 }

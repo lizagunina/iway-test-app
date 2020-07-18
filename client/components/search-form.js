@@ -11,45 +11,50 @@ const SearchForm = ({ params, onParamsChange }) => {
 
   return (
     <div className="search-block">
-      <label htmlFor="order_status">Статус заказа: </label>
-      <select
-        name="order_status"
-        id="order_status"
-        value={newParams.order_status}
-        onChange={onValueChange}
-      >
-        <option value="0">-</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <div className="search-fields">
+        <label htmlFor="order_status">Статус заказа: </label>
+        <select
+          name="order_status"
+          id="order_status"
+          value={newParams.order_status}
+          onChange={onValueChange}
+          placeholder="статус заказа"
+        >
+          <option value="0">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
 
-      <input
-        placeholder="Имя"
-        name="names"
-        aria-label="search by name"
-        value={newParams.names}
-        onChange={onValueChange}
-      />
+        <input
+          placeholder="Имя"
+          name="names"
+          aria-label="search by name"
+          value={newParams.names}
+          onChange={onValueChange}
+        />
 
-      <input
-        placeholder="Email"
-        aria-label="search by email"
-        name="email"
-        value={newParams.email}
-        onChange={onValueChange}
-      />
-      <button
-        className="button"
-        type="button"
-        onClick={() => {
-          onParamsChange({ ...params, ...newParams })
-        }}
-      >
-        Применить
-      </button>
+        <input
+          placeholder="Email"
+          aria-label="search by email"
+          name="email"
+          value={newParams.email}
+          onChange={onValueChange}
+        />
+      </div>
+      <div>
+        <button
+          className="button"
+          type="button"
+          onClick={() => {
+            onParamsChange({ ...params, ...newParams })
+          }}
+        >
+          Применить
+        </button>
+      </div>
     </div>
   )
 }

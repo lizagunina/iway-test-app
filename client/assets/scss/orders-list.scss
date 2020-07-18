@@ -10,7 +10,7 @@
   }
   &-block {
     border: 1px #2d3748 solid;
-    padding: 2rem;
+    padding: 1rem 1rem 1.5rem;
     &_active {
       border-left: 2px #4299e1 solid;
     }
@@ -18,12 +18,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      flex-wrap: wrap;
       color: #2b6cb0;
-      font-size: .875rem;
+      font-size: 1rem;
     }
     &__show-info {
       outline: none;
+      margin-top: 1rem;
       color:#2b6cb0;
       font-weight: 700;
       text-decoration: underline;
@@ -34,31 +35,24 @@
   }
 }
 
-.passenger {
-  margin-bottom: 1.5rem;
+.info {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #2b6cb0;
   &-block {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    text-align: left;
+    margin-bottom: 0.5rem;
     &__item {
-      width: 30%;
-      padding: 0.1rem;
+      width: 50%;
     }
-  }
-}
-
-.route {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  &__item {
-    width: 30%;
-    padding: 0.1rem;
   }
 }
 
 .title {
     font-size: 1rem;
+    margin-bottom: 0.25rem;
     text-decoration: underline;
     font-weight: 700;
   }
@@ -66,6 +60,15 @@
 @media (max-width: 1280px) {
   .orders {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-block {
+    flex-direction: column;
+    &__item {
+      width: 80%;
+    }
   }
 }
 

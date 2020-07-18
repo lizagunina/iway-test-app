@@ -9,48 +9,46 @@ const Order = ({ trip }) => {
       <div>
         <div className="orders-block__header">
           <p>
-            <b className="text-md">Заказ {trip.booker_number}</b> {trip.date}
+            <b>Заказ {trip.booker_number}</b> {trip.date}
           </p>
           <p>Статус заказа: {trip.status}</p>
         </div>
 
-        <div className="passenger">
+        <div className="info">
           <div className="title">Пассажиры ({trip.passengers_number})</div>
-          <div className="passenger-block">
-            <div className="passenger-block__item">
-              <b className="passenger-block__title">Имя</b>
+          <div className="info-block">
+            <div className="info-block__item">
+              <b>Имя</b>
             </div>
-            <div className="passenger-block__item">
-              <b className="passenger-block__title">Телефон</b>
-            </div>
-            <div className="passenger-block__item">
-              <b className="passenger-block__title">Email</b>
+            <div className="info-block__item">
+              <b>Контакты</b>
             </div>
           </div>
           {trip.passengers.map((passenger) => {
             return (
-              <div key={passenger.client_id} className="passenger-block">
-                <div className="passenger-block__item">{passenger.name}</div>
-                <div className="passenger-block__item">{passenger.phone}</div>
-                <div className="passenger-block__item">{passenger.email}</div>
+              <div key={passenger.client_id} className="info-block">
+                <div className="info-block__item">{passenger.name}</div>
+                <div className="info-block__item">
+                  <p>{passenger.phone}</p>
+                  <p>{passenger.email}</p>
+                </div>
               </div>
             )
           })}
         </div>
-        <hr />
-        <div>
+
+        <div className="info">
           <div className="title">Маршрут</div>
-          <div className="route">
-            <div className="route__item">
-              <b className="route__subtitle">Адрес и время подачи</b>
-              <div className="route__text">{trip.location_address}</div>
-              <div className="route__text">{trip.date_arrival}</div>
+          <div className="info-block">
+            <div className="info-block__item">
+              <b>Адрес и время подачи</b>
+              <div>{trip.location_address}</div>
+              <div>{trip.date_arrival}</div>
             </div>
-            <div className="route__item">
-              <b className="route__subtitle">Адрес назначения</b>
-              <div className="route__text">{trip.destination_address}</div>
+            <div className="info-block__item">
+              <b>Адрес назначения</b>
+              <div>{trip.destination_address}</div>
             </div>
-            <div className="route__item" />
           </div>
         </div>
 
@@ -64,15 +62,19 @@ const Order = ({ trip }) => {
           {!isInfoShown ? 'Подробнее' : 'Скрыть'}
         </button>
         {isInfoShown && (
-          <div>
-            <div className="pl-8 pr-8 pb-5 text-grey-darkest">
-              <ul className="pl-4">
-                <li className="pb-2">consectetur adipiscing elit</li>
-                <li className="pb-2">
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </li>
-                <li className="pb-2">Viverra orci sagittis eu volutpat odio facilisis mauris</li>
-              </ul>
+          <div className="info">
+            <div className="title">Информация о водителе и автомобиле</div>
+            <div className="info-block">
+              <div className="info-block__item">
+                <b>Автомобиль</b>
+                <div>Класс: {trip.car_data?.car_class}</div>
+                <div>Модель: {trip.driver_data?.driver_car}</div>
+              </div>
+              <div className="info-block__item">
+                <b>Водитель</b>
+                <div>{trip.driver_data?.driver_name}</div>
+                <div>{trip.driver_data?.driver_phone}</div>
+              </div>
             </div>
           </div>
         )}
