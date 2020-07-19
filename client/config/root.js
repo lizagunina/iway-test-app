@@ -13,14 +13,6 @@ import NotFound from '../components/404'
 
 import Startup from './startup'
 
-const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
-  const { token } = localStorage
-
-  const func = (props) =>
-    token ? <Redirect to={{ pathname: '/private' }} /> : <Component {...props} />
-  return <Route {...rest} render={func} />
-}
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { token } = localStorage
   const func = (props) =>
@@ -41,10 +33,6 @@ const types = {
   location: PropTypes.shape({
     pathname: PropTypes.string
   }),
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string
-  }),
   token: PropTypes.string
 }
 
@@ -52,15 +40,12 @@ const defaults = {
   location: {
     pathname: ''
   },
-  user: null,
   token: ''
 }
 
-OnlyAnonymousRoute.propTypes = types
 PrivateRoute.propTypes = types
 
 PrivateRoute.defaultProps = defaults
-OnlyAnonymousRoute.defaultProps = defaults
 
 const RouterSelector = (props) =>
   typeof window !== 'undefined' ? <ConnectedRouter {...props} /> : <StaticRouter {...props} />
@@ -71,8 +56,7 @@ const RootComponent = (props) => {
       <RouterSelector history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
-            <OnlyAnonymousRoute exact path="/login" component={() => <LoginPage />} />
-            <Route exact path="/" component={() => <LoginPage />} />
+            <Route exact path="/login" component={() => <LoginPage />} />
             <PrivateRoute exact path="/private" component={() => <OrdersList />} />
             <Route component={() => <NotFound />} />
           </Switch>
