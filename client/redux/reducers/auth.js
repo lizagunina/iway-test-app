@@ -46,7 +46,7 @@ export function signIn() {
         if (data.result) {
           localStorage.setItem('token', data.result.token)
           dispatch({ type: LOGIN })
-          history.push('/private')
+          history.push('/orders')
         }
       })
       .catch((err) => {

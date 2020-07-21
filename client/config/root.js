@@ -21,7 +21,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     ) : (
       <Redirect
         to={{
-          pathname: '/login'
+          pathname: '/'
         }}
       />
     )
@@ -56,8 +56,8 @@ const RootComponent = (props) => {
       <RouterSelector history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
-            <Route exact path="/login" component={() => <LoginPage />} />
-            <PrivateRoute exact path="/private" component={() => <OrdersList />} />
+            <Route exact path="/" component={() => <LoginPage />} />
+            <PrivateRoute exact path="/orders" component={() => <OrdersList />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>
